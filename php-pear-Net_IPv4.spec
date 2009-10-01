@@ -5,7 +5,7 @@
 Summary:	IPv4 network calculations and validation
 Name:		php-pear-%{upstream_name}
 Version:	1.3.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	PHP License
 Group:		Development/PHP
 Source0:	http://pear.php.net/get/%{upstream_name}-%{version}.tar.bz2
@@ -45,7 +45,7 @@ pear install --nodeps --soft --force --register-only \
 %preun
 if [ "$1" -eq "0" ]; then
     pear uninstall --nodeps --ignore-errors --register-only \
-        %{pear_name} >/dev/null || :
+        %{upstream_name} >/dev/null || :
 fi
 
 %clean
