@@ -2,14 +2,14 @@
 %define		_subclass	IPv4
 %define		upstream_name	%{_class}_%{_subclass}
 
-Summary:	IPv4 network calculations and validation
 Name:		php-pear-%{upstream_name}
 Version:	1.3.1
-Release:	%mkrel 3
+Release:	%mkrel 4
+Summary:	IPv4 network calculations and validation
 License:	PHP License
 Group:		Development/PHP
-Source0:	http://pear.php.net/get/%{upstream_name}-%{version}.tar.bz2
 URL:		http://pear.php.net/package/Net_IPv4/
+Source0:	http://download.pear.php.net/package/%{upstream_name}-%{version}.tar.bz2
 Requires(post): php-pear
 Requires(preun): php-pear
 Requires:	php-pear
@@ -38,6 +38,9 @@ rm -rf %{buildroot}%{_datadir}/pear/tests
 install -d %{buildroot}%{_datadir}/pear/packages
 install -m 644 %{upstream_name}.xml %{buildroot}%{_datadir}/pear/packages
 
+%clean
+rm -rf %{buildroot}
+
 %post
 %if %mdkversion < 201000
 pear install --nodeps --soft --force --register-only \
@@ -48,12 +51,9 @@ pear install --nodeps --soft --force --register-only \
 %if %mdkversion < 201000
 if [ "$1" -eq "0" ]; then
     pear uninstall --nodeps --ignore-errors --register-only \
-        %{upstream_name} >/dev/null || :
+        %{pear_name} >/dev/null || :
 fi
 %endif
-
-%clean
-rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
