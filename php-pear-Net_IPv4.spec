@@ -4,7 +4,7 @@
 
 Name:		php-pear-%{upstream_name}
 Version:	1.3.4
-Release:	4
+Release:	5
 Summary:	IPv4 network calculations and validation
 License:	PHP License
 Group:		Development/PHP
